@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/profil_synexis_final_clean.css') }}">
+{% endblock %}
+
+{% block body %}
+<nav class="navbar">
+  <a href="{% if 'ROLE_ADMIN' in app.user.roles %}
+              {{ path('app_admin_dashboard') }}
+            {% elseif 'ROLE_COMPLEXE' in app.user.roles %}
+              {{ path('app_advanced_dashboard') }}
+            {% else %}
+              {{ path('app_user_dashboard') }}
+            {% endif %}">
+    <img src="{{ asset('img/logovertsansfond.png') }}" alt="Synexis Logo" class="logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="{% if 'ROLE_ADMIN' in app.user.roles %}
+                    {{ path('app_admin_dashboard') }}
+                  {% elseif 'ROLE_COMPLEXE' in app.user.roles %}
+                    {{ path('app_advanced_dashboard') }}
+                  {% else %}
+                    {{ path('app_user_dashboard') }}
+                  {% endif %}">Accueil</a></li>
+    <li><a href="{{ path('app_contact') }}">Contact</a></li>
+    <li><a href="{{ path('app_about') }}">À propos</a></li>
+  </ul>
+</nav>
+
+<div class="profile-header">
+  <img src="{{ asset('img/user-icon.png') }}" alt="Avatar">
+  <h1>{{ app.user.firstname }}</h1>
+  <p>
+    <span style="color: #00FF80;">
+      {% if 'ROLE_ADMIN' in app.user.roles %}
+        Administrateur
+      {% elseif 'ROLE_COMPLEXE' in app.user.roles %}
+        Utilisateur avancé
+      {% else %}
+        Utilisateur
+      {% endif %}
+    </span>
+  </p>
+</div>
+
+<div class="profile-info">
+  <div class="info-box">
+    <label>Nom complet</label>
+    <span>{{ app.user.firstname }} {{ app.user.lastname }}</span>
+  </div>
+  <div class="info-box">
+    <label>Adresse e-mail</label>
+    <span>{{ app.user.email }}</span>
+  </div>
+  <div class="info-box">
+    <label>Mot de passe</label>
+    <span>••••••••</span>
+  </div>
+  <div class="info-box">
+    <label>Pseudo</label>
+    <span>{{ app.user.pseudo }}</span>
+  </div>
+  <div class="info-box">
+    <label>Genre</label>
+    <span>{{ app.user.gender|capitalize }}</span>
+  </div>
+  <div class="info-box">
+    <label>Date de naissance</label>
+    <span>{{ app.user.dob ? app.user.dob|date('d F Y') : 'Non renseignée' }}</span>
+  </div>
+  <div class="info-box">
+    <label>Niveau</label>
+    <span>{{ app.user.level }}</span>
+  </div>
+  <div class="info-box">
+    <label>Points</label>
+    <span>{{ app.user.points }}</span>
+  </div>
+</div>
+
+<div style="text-align: center;">
+  <a href="{{ path('app_profil_edit') }}">
+    <button class="modify-button" style="background-color: #00FF80; color: #121212;">Modifier le profil</button>
+  </a>
+</div>
+<div style="text-align: center; margin-top: 1rem;">
+  <a href="{{ path('app_user_directory') }}">
+    <button class="modify-button" style="background-color: #00BBFF; color: #121212;">Voir les autres profils</button>
+  </a>
+</div>
+
+<footer class="footer" style="margin-top: 8rem; text-align: center; font-size: 0.9rem; color: #777;">
+  &copy; 2025 Synexis - Tous droits réservés.
+</footer>
+{% endblock %}

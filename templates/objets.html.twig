@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Objets Connectés{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/features_dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<section class="dashboard-section">
+    <h1>Objets & Services</h1>
+    <p>Explorez les objets connectés disponibles dans votre environnement.</p>
+
+    <div class="cards-container">
+        <div class="dashboard-card">
+            <h3>Caméra de surveillance</h3>
+            <p>Statut : Activée</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Capteur de température</h3>
+            <p>Dernière mesure : 21.5°C</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Serrure intelligente</h3>
+            <p>État : Fermée</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
