@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques des Objets Connectés{% endblock %}
+
+{% block body %}
+<h1>📊 Statistiques des Objets Connectés</h1>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+  <div style="flex: 1;">
+    <h3>🍕 Répartition par Type</h3>
+    <canvas id="typeChart"></canvas>
+  </div>
+  <div style="flex: 1;">
+    <h3>📈 Répartition par Statut</h3>
+    <canvas id="statusChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const typeData = {{ types|json_encode|raw }};
+  const statusData = {{ statuses|json_encode|raw }};
+
+  new Chart(document.getElementById('typeChart'), {
+    type: 'pie',
+    data: {
+      labels: typeData.map(e => e.type),
+      datasets: [{
+        label: 'Par Type',
+        data: typeData.map(e => e.count),
+        borderWidth: 1
+      }]
+    }
+  });
+
+  new Chart(document.getElementById('statusChart'), {
+    type: 'bar',
+    data: {
+      labels: statusData.map(e => e.status),
+      datasets: [{
+        label: 'Par Statut',
+        data: statusData.map(e => e.count),
+        backgroundColor: ['#36A2EB', '#FF6384'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          precision: 0
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
