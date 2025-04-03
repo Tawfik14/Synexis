@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+<h1>👥 Gestion des utilisateurs</h1>
+
+<form method="get" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
+  <input type="text" name="q" value="{{ search }}" placeholder="Rechercher nom, pseudo ou email..." style="padding: 5px; width: 300px;">
+  <select name="role" style="padding: 5px;">
+    <option value="">Tous les rôles</option>
+    <option value="ROLE_USER" {% if roleFilter == 'ROLE_USER' %}selected{% endif %}>Utilisateur simple</option>
+    <option value="ROLE_COMPLEXE" {% if roleFilter == 'ROLE_COMPLEXE' %}selected{% endif %}>Utilisateur complexe</option>
+    <option value="ROLE_ADMIN" {% if roleFilter == 'ROLE_ADMIN' %}selected{% endif %}>Administrateur</option>
+  </select>
+  <button type="submit">🔍 Filtrer</button>
+</form>
+
+<a href="{{ path('app_register') }}" class="btn btn-primary" style="margin-bottom: 1rem;">➕ Ajouter un utilisateur</a>
+
+<table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+  <thead style="background-color: #f0f0f0;">
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Pseudo</th>
+      <th>Rôle(s)</th>
+      <th>Points</th>
+      <th>Niveau</th>
+      <th style="text-align:center;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.pseudo }}</td>
+        <td>
+          {% for role in user.roles %}
+            {% if role == 'ROLE_ADMIN' %}
+              <span style="color: red;">Administrateur</span>
+            {% elseif role == 'ROLE_ADVANCED' %}
+              <span style="color: orange;">Utilisateur complexe</span>
+            {% elseif role == 'ROLE_USER' %}
+              <span style="color: green;">Utilisateur simple</span>
+            {% else %}
+              {{ role }}
+            {% endif %}
+            {% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </td>
+        <td>{{ user.points }}</td>
+        <td>{{ user.level }}</td>
+        <td style="text-align:center;">
+          {% if user.id %}
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}" style="margin-right: 0.5rem;">✏️ Modifier</a>
+            <a href="{{ path('app_user_delete', {'id': user.id}) }}" onclick="return confirm('Supprimer cet utilisateur ?');" style="color: red;">🗑️ Supprimer</a>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8" style="text-align:center;"><em>Aucun utilisateur trouvé.</em></td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
