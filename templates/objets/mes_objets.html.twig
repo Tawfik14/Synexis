@@ -1,0 +1,61 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes objets connectés{% endblock %}
+
+{% block body %}
+<h1>📦 Mes objets connectés</h1>
+
+<form method="get" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
+  <input type="text" name="q" placeholder="Rechercher par nom ou type..." value="{{ app.request.get('q') }}" style="padding: 5px; width: 250px;">
+  <select name="status" style="padding: 5px;">
+    <option value="">Tous les statuts</option>
+    <option value="actif" {% if app.request.get('status') == 'actif' %}selected{% endif %}>Actif</option>
+    <option value="inactif" {% if app.request.get('status') == 'inactif' %}selected{% endif %}>Inactif</option>
+  </select>
+  <select name="inactive_since" style="padding: 5px;">
+    <option value="">Dernière utilisation</option>
+    <option value="7" {% if app.request.get('inactive_since') == '7' %}selected{% endif %}>+ 7 jours</option>
+    <option value="30" {% if app.request.get('inactive_since') == '30' %}selected{% endif %}>+ 30 jours</option>
+  </select>
+  <button type="submit">🔍 Rechercher</button>
+</form>
+
+
+{% if objets is empty %}
+    <p style="font-style: italic;">Vous n'avez encore aucun objet connecté assigné à votre profil.</p>
+{% else %}
+    <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+        <thead style="background-color: #f0f0f0;">
+            <tr>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Statut</th>
+                <th>Emplacement</th>
+                <th>Dernière utilisation</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for objet in objets %}
+            <tr>
+                <td>{{ objet.name }}</td>
+                <td>{{ objet.type }}</td>
+                <td>{{ objet.status }}</td>
+                <td>{{ objet.location }}</td>
+                <td>{{ objet.lastUsedAt ? objet.lastUsedAt|date('d/m/Y H:i', 'Europe/Paris') : '—' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if 'ROLE_ADMIN' in app.user.roles %}
+  <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% elseif 'ROLE_COMPLEXE' in app.user.roles %}
+  <a href="{{ path('app_advanced_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% else %}
+  <a href="{{ path('app_user_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% endif %}
+
+{% endblock %}
