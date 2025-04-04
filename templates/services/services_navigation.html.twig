@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services connectés{% endblock %}
+
+{% block body %}
+<h1>🧭 Navigation services</h1>
+
+<div style="display: flex; gap: 2rem; margin-top: 2rem;">
+  <a href="{{ path('app_my_services') }}" class="btn btn-primary">🔧 Mes services</a>
+  <a href="{{ path('app_all_services') }}" class="btn btn-outline-primary">🌐 Tous les services</a>
+</div>
+{% endblock %}

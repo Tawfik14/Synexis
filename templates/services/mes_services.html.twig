@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes services{% endblock %}
+
+{% block body %}
+<h1>🔧 Mes services</h1>
+
+<form method="get" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
+  <input type="text" name="q" placeholder="Rechercher par nom ou catégorie..." value="{{ app.request.get('q') }}" style="padding: 5px; width: 250px;">
+  <select name="category" style="padding: 5px;">
+    <option value="">Toutes les catégories</option>
+    <option value="energie" {% if app.request.get('category') == 'energie' %}selected{% endif %}>Énergie</option>
+    <option value="securite" {% if app.request.get('category') == 'securite' %}selected{% endif %}>Sécurité</option>
+    <option value="confort" {% if app.request.get('category') == 'confort' %}selected{% endif %}>Confort</option>
+    <option value="autre" {% if app.request.get('category') == 'autre' %}selected{% endif %}>Autre</option>
+  </select>
+  <select name="length" style="padding: 5px;">
+    <option value="">Longueur description</option>
+    <option value="50" {% if app.request.get('length') == '50' %}selected{% endif %}>+ 50 caractères</option>
+    <option value="100" {% if app.request.get('length') == '100' %}selected{% endif %}>+ 100 caractères</option>
+  </select>
+  <button type="submit">🔍 Rechercher</button>
+</form>
+
+{% if services is empty %}
+    <p style="font-style: italic;">Vous n'avez encore aucun service assigné à votre profil.</p>
+{% else %}
+    <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+        <thead style="background-color: #f0f0f0;">
+            <tr>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.name }}</td>
+                <td>{{ service.category }}</td>
+                <td>{{ service.description ?? '—' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% if 'ROLE_ADMIN' in app.user.roles %}
+  <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% elseif 'ROLE_COMPLEXE' in app.user.roles %}
+  <a href="{{ path('app_advanced_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% else %}
+  <a href="{{ path('app_user_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% endif %}
+{% endblock %}
+
