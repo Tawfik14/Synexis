@@ -7,7 +7,7 @@
   <h1>Profil de {{ user.pseudo }}</h1>
 
   <img src="{{ user.profilePicture ? asset('uploads/profiles/' ~ user.profilePicture) : asset('img/user-icon.png') }}"
-       alt="Photo de {{ user.pseudo }}" style="width: 100px; height: 100px; border-radius: 50%; margin: 1rem auto;">
+       alt="Photo de {{ user.pseudo }}" style="width: 100px; height: 100px; border-radius: 50%; margin: 1rem auto;" loading="lazy">
 
   <h2>{{ user.firstname }} {{ user.lastname }}</h2>
 
