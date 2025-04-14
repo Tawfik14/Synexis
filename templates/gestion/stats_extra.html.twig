@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques supplémentaires{% endblock %}
+
+{% block body %}
+<h1>📊 Statistiques supplémentaires</h1>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+  <div style="flex: 1;">
+    <h3>🏢 Répartition par Emplacement</h3>
+    <canvas id="locationChart"></canvas>
+  </div>
+  <div style="flex: 1;">
+    <h3>🏷️ Répartition par Marque</h3>
+    <canvas id="brandChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const locationData = {{ locations|json_encode|raw }};
+  const brandData = {{ brands|json_encode|raw }};
+
+  new Chart(document.getElementById('locationChart'), {
+    type: 'doughnut',
+    data: {
+      labels: locationData.map(e => e.location),
+      datasets: [{
+        label: 'Objets par emplacement',
+        data: locationData.map(e => e.count),
+        borderWidth: 1
+      }]
+    }
+  });
+
+  new Chart(document.getElementById('brandChart'), {
+    type: 'bar',
+    data: {
+      labels: brandData.map(e => e.brand),
+      datasets: [{
+        label: 'Objets par marque',
+        data: brandData.map(e => e.count),
+        backgroundColor: '#FFCE56',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          precision: 0
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
