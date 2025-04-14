@@ -1,0 +1,37 @@
+
+a {
+  text-decoration: none !important;
+}
+
+.feature {
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.feature.locked {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.feature.locked::after {
+  content: "Accès restreint";
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 5;
+}
+
+.feature.locked:hover::after {
+  opacity: 1;
+}
