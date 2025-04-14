@@ -19,29 +19,29 @@ class ConnectedObjectType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de l\'objet'  // Label personnalisé pour "name"
+                'label' => 'Nom de l\'objet'  
             ])
             ->add('type', TextType::class, [
-                'label' => 'Type de l\'objet'  // Label personnalisé pour "type"
+                'label' => 'Type de l\'objet'  
             ])
             ->add('brand', TextType::class, [
                 'required' => false,
-                'label' => 'Marque de l\'objet'  // Label personnalisé pour "brand"
+                'label' => 'Marque de l\'objet'  
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => [
                     'Actif' => 'actif',
                     'Inactif' => 'inactif',
                 ],
-                'label' => 'Statut de l\'objet'  // Label personnalisé pour "status"
+                'label' => 'Statut de l\'objet'  
             ])
             ->add('location', TextType::class, [
                 'required' => false,
-                'label' => 'Emplacement de l\'objet'  // Label personnalisé pour "location"
+                'label' => 'Emplacement de l\'objet'  
             ])
             ->add('room', TextType::class, [
                 'required' => false,
-                'label' => 'Zone/Pièce'  // Label personnalisé pour "room"
+                'label' => 'Zone/Pièce'  
             ])
             ->add('lastUsedAt', DateTimeType::class, [
                 'required' => false,
@@ -50,13 +50,13 @@ class ConnectedObjectType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'label' => 'Description de l\'objet'  // Label personnalisé pour "description"
+                'label' => 'Description de l\'objet'  
             ])
             ->add('owner', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'pseudo',
                 'required' => false,
-                'label' => 'Utilisateur associé'  // Label personnalisé pour "owner"
+                'label' => 'Utilisateur associé'  
             ]);
     }
 
