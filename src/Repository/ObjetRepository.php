@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Entity\Objet;
@@ -11,18 +12,4 @@ class ObjetRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Objet::class);
     }
-
-    // 🔍 Exemples de méthodes personnalisées (à ajouter si besoin)
-    /*
-    public function findByUser(User $user): array
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.user = :user')
-            ->setParameter('user', $user)
-            ->orderBy('o.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-    */
 }
-
