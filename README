@@ -9,6 +9,7 @@
 - 🔍 Description du Projet
 - 🧠 Fonctionnalités par Modules
 - 🛠️ Technologies Utilisées
+- 🧱 Prérequis
 - ⚙️ Installation du Projet
 - 🗃️ Base de Données
 - 🔐 Accès Utilisateurs
@@ -71,7 +72,20 @@ Le projet est structuré autour de 4 modules principaux accessibles en fonction 
 - Serveur local : XAMPP / WAMP / MAMP / LAMP
 - Gestion de version : Git + GitHub
 
+
 ---
+
+## 🧱 Prérequis
+
+Avant de lancer le projet Synexis, assurez-vous d’avoir les éléments suivants installés sur votre machine :
+
+### Obligatoires :
+- PHP 8.1 ou supérieur
+- Composer (pour installer Symfony et ses dépendances)
+- MySQL Server
+- Extensions PHP : `mbstring`, `xml`, `pdo_mysql`
+- cURL / unzip (utiles pour Composer)
+
 
 ## ⚙️ Installation du Projet
 
