@@ -44,7 +44,7 @@ class Objet
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
-    // Getters and setters à ajouter ici si nécessaire
+    // Getters and setter
         public function getId(): int
         {
             return $this->id;
