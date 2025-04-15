@@ -13,7 +13,7 @@
             {% else %}
               {{ path('app_user_dashboard') }}
             {% endif %}">
-    <img src="{{ asset('img/logovertsansfond.png') }}" alt="Synexis Logo" class="logo">
+    <img src="{{ asset('img/logovertsansfond.png') }}" alt="Synexis Logo" class="logo" loading="lazy">
   </a>
   <ul class="nav-links">
     <li><a href="{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
