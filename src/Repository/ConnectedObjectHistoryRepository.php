@@ -6,9 +6,6 @@ use App\Entity\ConnectedObjectHistory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<ConnectedObjectHistory>
- */
 class ConnectedObjectHistoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
