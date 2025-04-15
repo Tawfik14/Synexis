@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS delete_request (
     created_at DATETIME
 );
 
--- Additional tables completed
+
 
 CREATE TABLE IF NOT EXISTS delete_objet_request (
     id INT AUTO_INCREMENT PRIMARY KEY,
