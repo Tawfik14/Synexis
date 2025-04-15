@@ -22,7 +22,7 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('contact.html.twig'); // ✅ correspond à ton fichier
+        return $this->render('contact.html.twig'); 
     }
 
     #[Route('/contact/send', name: 'app_contact_send', methods: ['POST'])]
