@@ -28,7 +28,7 @@ class UserController extends AbstractController
             $user->setEmail($request->request->get('email'));
             $user->setPseudo($request->request->get('pseudo'));
 
-            // 🔐 Gestion du code d'accès pour déterminer le rôle
+            // Gestion du code d'accès pour déterminer le rôle
             $code = $request->request->get('access_code');
 
             switch ($code) {
