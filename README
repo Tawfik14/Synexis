@@ -4,22 +4,22 @@
 
 ---
 
-## 📋 Sommaire
+##  Sommaire
 
-- 🔍 Description du Projet
-- 🧠 Fonctionnalités par Modules
-- 🛠️ Technologies Utilisées
-- 🧱 Prérequis
-- ⚙️ Installation du Projet
-- 🗃️ Base de Données
-- 🔐 Accès Utilisateurs
-- 📁 Structure du Projet
-- 🚀 Lancer le Projet
-- 📬 Contact
+-  Description du Projet
+-  Fonctionnalités par Modules
+-  Technologies Utilisées
+-  Prérequis
+-  Installation du Projet
+-  Base de Données
+-  Accès Utilisateurs
+-  Structure du Projet
+-  Lancer le Projet
+-  Contact
 
 ---
 
-## 🔍 Description du Projet
+##  Description du Projet
 
 Le projet **Synexis** s’inscrit dans la thématique des environnements intelligents (Internet des Objets - IoT). Il s’agit d’un outil digital qui permet :  
 - La gestion intelligente des objets connectés d’une entreprise.  
@@ -35,7 +35,7 @@ Le projet est structuré autour de 4 modules principaux accessibles en fonction 
 
 ---
 
-## 🧠 Fonctionnalités par Modules
+##  Fonctionnalités par Modules
 
 ### Module Information (Visiteur)
 - Free tour public
@@ -64,18 +64,17 @@ Le projet est structuré autour de 4 modules principaux accessibles en fonction 
 
 ---
 
-## 🛠️ Technologies Utilisées
+##  Technologies Utilisées
 
 - Backend : PHP 8.x + Symfony 6
 - Frontend : Twig, HTML5, CSS3, JavaScript
 - Base de Données : MySQL
-- Serveur local : XAMPP / WAMP / MAMP / LAMP
 - Gestion de version : Git + GitHub
 
 
 ---
 
-## 🧱 Prérequis
+## Prérequis
 
 Avant de lancer le projet Synexis, assurez-vous d’avoir les éléments suivants installés sur votre machine :
 
@@ -83,19 +82,17 @@ Avant de lancer le projet Synexis, assurez-vous d’avoir les éléments suivant
 - PHP 8.1 ou supérieur
 - Composer (pour installer Symfony et ses dépendances)
 - MySQL Server
-- Extensions PHP : `mbstring`, `xml`, `pdo_mysql`
-- cURL / unzip (utiles pour Composer)
 
 
-## ⚙️ Installation du Projet
+
+##  Installation du Projet
 
 ### Sous Linux
 
 ```bash
-sudo apt install php php-cli php-mbstring unzip curl php-xml composer mysql-server
 composer install
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
-symfony server:start
+symfony server:start -d (-d non obligatoire mais execute symfony en fond pour continuer à utiliser le terminal)
 
 
