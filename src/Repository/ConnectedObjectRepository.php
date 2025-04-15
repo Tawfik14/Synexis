@@ -6,14 +6,6 @@ use App\Entity\ConnectedObject;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<ConnectedObject>
- *
- * @method ConnectedObject|null find($id, $lockMode = null, $lockVersion = null)
- * @method ConnectedObject|null findOneBy(array $criteria, array $orderBy = null)
- * @method ConnectedObject[]    findAll()
- * @method ConnectedObject[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class ConnectedObjectRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
