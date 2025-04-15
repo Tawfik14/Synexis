@@ -17,8 +17,9 @@ class ConnectedObjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('type', ChoiceType::class, [
+                'label' => 'Type d\'objet',
                 'choices' => [
                     'Caméra' => 'camera',
                     'Thermostat' => 'thermostat',
@@ -38,23 +39,24 @@ class ConnectedObjectType extends AbstractType
                 'placeholder' => 'Choisir un type',
             ])
             ->add('status', ChoiceType::class, [
+                'label' => 'Statut',
                 'choices' => [
                     'Actif' => 'actif',
                     'Inactif' => 'inactif',
                     'En panne' => 'en_panne',
                 ],
-                'label' => 'Statut',
                 'placeholder' => 'Sélectionnez un statut',
                 'required' => true,
                 'data' => 'actif',
             ])
-            ->add('location', TextType::class, ['required' => false])
-            ->add('room', TextType::class, ['required' => false])
-            ->add('brand', TextType::class, ['required' => false])
-            ->add('description', TextareaType::class, ['required' => false])
-            ->add('currentTemp', NumberType::class, ['required' => false, 'data' => 21])
-            ->add('targetTemp', NumberType::class, ['required' => false, 'data' => 23])
+            ->add('location', TextType::class, ['required' => false, 'label' => 'Localisation'])
+            ->add('room', TextType::class, ['required' => false, 'label' => 'Pièce'])
+            ->add('brand', TextType::class, ['required' => false, 'label' => 'Marque'])
+            ->add('description', TextareaType::class, ['required' => false, 'label' => 'Description'])
+            ->add('currentTemp', NumberType::class, ['required' => false, 'data' => 21, 'label' => 'Température actuelle (°C)'])
+            ->add('targetTemp', NumberType::class, ['required' => false, 'data' => 23, 'label' => 'Température cible (°C)'])
             ->add('mode', ChoiceType::class, [
+                'label' => 'Mode',
                 'choices' => [
                     'Automatique' => 'auto',
                     'Refroidir' => 'cool',
@@ -62,15 +64,15 @@ class ConnectedObjectType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('viewAngle', IntegerType::class, ['required' => false, 'data' => 120])
-            ->add('resolution', TextType::class, ['required' => false, 'data' => '1080p'])
-            ->add('connectivity', TextType::class, ['required' => false, 'data' => 'WiFi'])
-            ->add('signal', TextType::class, ['required' => false, 'data' => 'Fort'])
-            ->add('batteryLevel', IntegerType::class, ['required' => false, 'data' => 100])
-            ->add('storageCapacity', IntegerType::class, ['required' => false, 'data' => 256])
-            ->add('ram', IntegerType::class, ['required' => false, 'data' => 8])
-            ->add('screenSize', NumberType::class, ['required' => false, 'data' => 13.3])
-            ->add('os', TextType::class, ['required' => false, 'data' => 'Windows 11']);
+            ->add('viewAngle', IntegerType::class, ['required' => false, 'data' => 120, 'label' => 'Angle de vue (°)'])
+            ->add('resolution', TextType::class, ['required' => false, 'data' => '1080p', 'label' => 'Résolution'])
+            ->add('connectivity', TextType::class, ['required' => false, 'data' => 'WiFi', 'label' => 'Connectivité'])
+            ->add('signal', TextType::class, ['required' => false, 'data' => 'Fort', 'label' => 'Signal'])
+            ->add('batteryLevel', IntegerType::class, ['required' => false, 'data' => 100, 'label' => 'Batterie (%)'])
+            ->add('storageCapacity', IntegerType::class, ['required' => false, 'data' => 256, 'label' => 'Stockage (Go)'])
+            ->add('ram', IntegerType::class, ['required' => false, 'data' => 8, 'label' => 'RAM (Go)'])
+            ->add('screenSize', NumberType::class, ['required' => false, 'data' => 13.3, 'label' => 'Taille écran (pouces)'])
+            ->add('os', TextType::class, ['required' => false, 'data' => 'Windows 11', 'label' => 'Système d\'exploitation']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -80,4 +82,3 @@ class ConnectedObjectType extends AbstractType
         ]);
     }
 }
-
