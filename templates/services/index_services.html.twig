@@ -1,15 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Services connectés
-<div style="margin-top: 5rem;">
-  {% if 'ROLE_ADMIN' in app.user.roles %}
-    <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary">🏠 Retour au tableau de bord</a>
-  {% elseif 'ROLE_ADVANCED' in app.user.roles %}
-    <a href="{{ path('app_advanced_dashboard') }}" class="btn btn-secondary">🏠 Retour au tableau de bord</a>
-  {% else %}
-    <a href="{{ path('app_user_dashboard') }}" class="btn btn-secondary">🏠 Retour au tableau de bord</a>
-  {% endif %}
-</div>
+
 
 {% endblock %}
 
