@@ -16,5 +16,4 @@ class ServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Service::class);
     }
 
-    // Ajoutez vos méthodes personnalisées ici si besoin
 }
