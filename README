@@ -93,8 +93,9 @@ Avant de lancer le projet Synexis, assurez-vous d’avoir les éléments suivant
 composer install
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
+symfony server:start -d (-d non obligatoire mais execute symfony en fond pour continuer à utiliser le terminal)
 
-### Sous Linux
+### Sous Windows
 
 - installer XAMPP ou WAMP
 - installer Composer :
@@ -104,6 +105,6 @@ php bin/console doctrine:migrations:migrate
 - créer la base :
             php bin/console doctrine:database:create
             php bin/console doctrine:migrations:migrate
-symfony server:start -d (-d non obligatoire mais execute symfony en fond pour continuer à utiliser le terminal)
+
 
 
