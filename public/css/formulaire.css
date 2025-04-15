@@ -1,0 +1,156 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0d0d;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Form layout */
+.auth-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Auth Card */
+.auth-card {
+  background-color: #121212;
+  padding: 2.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo */
+.auth-logo {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.logo-img {
+  height: 55px;
+  width: auto;
+}
+
+/* Title */
+.form-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+/* Form */
+.auth-form {
+  width: 100%;
+}
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.auth-form input::placeholder {
+  color: #777;
+}
+
+/* Button */
+.submit-btn {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background-color: #00ff80;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #b0e600;
+}
+
+/* Footer links */
+.form-footer,
+.link-container {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #aaa;
+}
+
+.form-link {
+  color: #00ff80;
+  text-decoration: none;
+  font-weight: 500;
+}
+.form-link:hover {
+  text-decoration: underline;
+}
+
+.forgot-password-link {
+  color: #66ccff;
+  font-size: 0.85rem;
+  display: block;
+  margin-top: -0.3rem;
+  margin-bottom: 1rem;
+  text-align: right;
+  text-decoration: none;
+}
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Extension pour scroll + style <select> */
+.scrollable-card {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Style custom pour <select> */
+.auth-form select.custom-select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'12'%20height%3D'8'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20fill%3D'%23fff'%20d%3D'M1.41%200L6%204.58%2010.59%200%2012%201.41%206%207.41%200%201.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.65rem;
+}
+
+.auth-form select.custom-select option {
+  background-color: #121212;
+  color: #fff;
+}

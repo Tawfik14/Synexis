@@ -1,0 +1,122 @@
+
+/* Styles communs pour about & contact */
+.about-wrapper, .contact-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e0e0e0;
+}
+
+.about-logo-large, .contact-logo-large {
+  height: 70px;
+  margin-bottom: 1.2rem;
+}
+
+.about-hero, .contact-hero {
+  background: linear-gradient(to right, #0d0d0d, #1a1a1a);
+  text-align: center;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+}
+.about-title, .contact-header h1 {
+  font-size: 2.5rem;
+  color: #00ff80;
+  margin: 1rem 0 0.5rem;
+}
+.about-subtitle, .contact-header p {
+  color: #bbbbbb;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+.about-vision {
+  background: #1b1b1b;
+  margin-top: 3rem;
+  padding: 2.5rem;
+  border-radius: 10px;
+}
+.about-vision h2 {
+  color: #00ff80;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+.about-vision p {
+  color: #cccccc;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+/* Contact Info Cards */
+.contact-infos {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.card {
+  background: #1e1e1e;
+  padding: 1.8rem;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.1);
+  transition: 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
+}
+.card h2 {
+  color: #00ff80;
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: #ccc;
+}
+
+/* Contact Form */
+.contact-form-block {
+  margin-top: 3rem;
+  text-align: center;
+}
+.form-grid {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-grid input, .form-grid textarea {
+  padding: 0.8rem;
+  background: #222;
+  border: 1px solid #444;
+  color: #eee;
+  border-radius: 6px;
+}
+.form-grid button {
+  background-color: #00ff80;
+  color: #121212;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.form-grid button:hover {
+  background-color: #00cc66;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
