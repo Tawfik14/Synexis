@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques objets et services{% endblock %}
+
+{% block body %}
+<h1>📊 Statistiques des Objets & Services</h1>
+
+<div style="display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem;">
+  <div style="width: 100%;">
+    <h3>📦 Objets par Type</h3>
+    <canvas id="typeChart"></canvas>
+  </div>
+  <div style="width: 100%;">
+    <h3>📍 Objets par Emplacement</h3>
+    <canvas id="locationChart"></canvas>
+  </div>
+  <div style="width: 100%;">
+    <h3>📅 Objets par Date d'ajout</h3>
+    <canvas id="addedChart"></canvas>
+  </div>
+  <div style="width: 100%;">
+    <h3>✅ Objets Actifs vs Inactifs</h3>
+    <canvas id="statusChart"></canvas>
+  </div>
+  <div style="width: 100%;">
+    <h3>🔧 Services par Catégorie</h3>
+    <canvas id="serviceCategoryChart"></canvas>
+  </div>
+  <div style="width: 100%;">
+    <h3>✍️ Longueur des descriptions de Services</h3>
+    <canvas id="descriptionLengthChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const typeData = {{ types|json_encode|raw }};
+  const locationData = {{ locations|json_encode|raw }};
+  const addedData = {{ addedDates|json_encode|raw }};
+  const serviceCategories = {{ serviceCategories|json_encode|raw }};
+  const descriptionLengths = {{ descriptionLengths|json_encode|raw }};
+  const statuses = {{ statuses|json_encode|raw }};
+
+  new Chart(document.getElementById('typeChart'), {
+    type: 'pie',
+    data: {
+      labels: typeData.map(e => e.type),
+      datasets: [{ data: typeData.map(e => e.count) }]
+    }
+  });
+
+  new Chart(document.getElementById('locationChart'), {
+    type: 'bar',
+    data: {
+      labels: locationData.map(e => e.location),
+      datasets: [{ label: 'Par Emplacement', data: locationData.map(e => e.count) }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById('addedChart'), {
+    type: 'line',
+    data: {
+      labels: addedData.map(e => e.date),
+      datasets: [{ label: 'Ajouts', data: addedData.map(e => e.count) }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById('statusChart'), {
+    type: 'doughnut',
+    data: {
+      labels: statuses.map(e => e.status),
+      datasets: [{ label: 'Objets', data: statuses.map(e => e.count) }]
+    }
+  });
+
+  new Chart(document.getElementById('serviceCategoryChart'), {
+    type: 'doughnut',
+    data: {
+      labels: serviceCategories.map(e => e.category),
+      datasets: [{ label: 'Services', data: serviceCategories.map(e => e.count) }]
+    }
+  });
+
+  new Chart(document.getElementById('descriptionLengthChart'), {
+    type: 'bar',
+    data: {
+      labels: descriptionLengths.map(e => e.range),
+      datasets: [{ label: 'Nb Services', data: descriptionLengths.map(e => e.count) }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+</script>
+{% endblock %}
+

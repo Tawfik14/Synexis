@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Synexis{% endblock %}
+
+{% block body %}
+<section class="auth-section">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <img src="{{ asset('img/logovertsansfond.png') }}" alt="Logo Synexis" class="logo-img">
+    </div>
+    <h2 class="form-title">Connexion</h2>
+
+    <form method="post" action="{{ path('app_login') }}" class="auth-form">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Adresse e-mail" value="{{ last_username }}" required>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Mot de passe" required>
+      </div>
+
+      <a href="/forgot-password" class="forgot-password-link">Mot de passe oublié ?</a>
+
+      <button type="submit" class="submit-btn full-btn">Se connecter</button>
+    </form>
+
+    {% if error %}
+      <p class="form-footer" style="color: red;">⚠️ {{ error.messageKey|trans(error.messageData, 'security') }}</p>
+    {% endif %}
+
+    <p class="form-footer">
+      Pas encore de compte ? <a href="/register" class="form-link">Créer un compte</a>
+    </p>
+  </div>
+</section>
+{% endblock %}
+

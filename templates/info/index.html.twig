@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations publiques - Synexis{% endblock %}
+
+{% block body %}
+<div class="info-wrapper" style="max-width: 900px; margin: auto; padding: 2rem; font-family: Arial, sans-serif;">
+
+  <section class="info-hero" style="text-align: center; margin-bottom: 2rem;">
+    <h1 style="color: #00cc88; font-size: 2.2rem;">Informations générales</h1>
+    <p style="color: #666;">Retrouvez les annonces, alertes et actualités du complexe.</p>
+  </section>
+
+  <section class="info-search" style="margin-bottom: 2rem;">
+    <form method="get" action="{{ path('app_info') }}" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+      <div style="flex: 1;">
+        <label for="categorie">Catégorie :</label>
+        <select name="categorie" id="categorie" style="width: 100%; padding: 0.5rem;">
+          <option value="">Toutes les catégories</option>
+          <option value="evenement" {% if selected_categorie == 'evenement' %}selected{% endif %}>Événement</option>
+          <option value="actualite" {% if selected_categorie == 'actualite' %}selected{% endif %}>Actualité</option>
+          <option value="formation" {% if selected_categorie == 'formation' %}selected{% endif %}>Formation</option>
+        </select>
+      </div>
+
+      <div style="flex: 1;">
+        <label for="departement">Département :</label>
+        <select name="departement" id="departement" style="width: 100%; padding: 0.5rem;">
+          <option value="">Tous les départements</option>
+          <option value="IT" {% if selected_departement == 'IT' %}selected{% endif %}>Informatique</option>
+          <option value="RH" {% if selected_departement == 'RH' %}selected{% endif %}>Ressources humaines</option>
+          <option value="Com" {% if selected_departement == 'Com' %}selected{% endif %}>Communication</option>
+        </select>
+      </div>
+
+      <div>
+        <button type="submit" style="padding: 0.6rem 1.2rem; background-color: #00cc88; color: white; border: none; border-radius: 4px; cursor: pointer;">Rechercher</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="info-results">
+    {% if results is not empty %}
+      <p style="margin-bottom: 1rem; font-style: italic; color: #555;">{{ results|length }} résultat(s) trouvé(s)</p>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        {% for item in results %}
+          <div class="info-card" style="background: #f9f9f9; padding: 1rem 1.5rem; border-left: 5px solid #00cc88; border-radius: 4px;">
+            <h3 style="margin-bottom: 0.5rem; color: #00cc88;">{{ item.title }}</h3>
+            <p style="margin: 0.2rem 0; color: #333;"><strong>Catégorie :</strong> {{ item.categorie }}</p>
+            <p style="margin: 0.2rem 0; color: #333;"><strong>Département :</strong> {{ item.departement }}</p>
+            <p style="margin-top: 0.5rem; color: #222;">{{ item.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Aucune information trouvée pour les critères sélectionnés.</p>
+    {% endif %}
+  </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur Synexis{% endblock %}
+
+{% block body %}
+<main class="main-layout">
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <img src="/img/logovertsansfond.png" alt="Logo Synexis" class="logo">
+    <ul class="nav-links">
+      <li><a href="{{ path('app_public_dashboard') }}">Accueil</a></li>
+      <li><a href="/about">À propos</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/login" class="btn-nav">Connexion</a></li>
+      <li><a href="/register" class="btn-nav-outline">Inscription</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero simple -->
+  <header class="hero">
+    <h1>Bienvenue sur Synexis</h1>
+    <p>La plateforme intelligente de votre entreprise connectée.</p>
+  </header>
+
+  <!-- Features à l'horizontale en carrés -->
+  <section class="features">
+    <div class="feature">
+      <h2>Gestion des objets</h2>
+      <p>Pilotez vos équipements connectés en temps réel.</p>
+    </div>
+    <div class="feature">
+      <h2>Suivi énergétique</h2>
+      <p>Analysez et optimisez vos consommations.</p>
+    </div>
+    <div class="feature">
+      <h2>Sécurité renforcée</h2>
+      <p>Gardez un œil sur vos espaces avec nos outils connectés.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Synexis. Tous droits réservés.</p>
+  </footer>
+
+</main>
+{% endblock %}
+

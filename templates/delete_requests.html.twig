@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandes de suppression{% endblock %}
+
+{% block body %}
+<h1>📬 Demandes de suppression</h1>
+
+<h2 style="margin-top:2rem;">🧩 Services</h2>
+<table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+  <thead style="background-color: #f9f9f9;">
+    <tr>
+      <th>Service</th>
+      <th>Catégorie</th>
+      <th>Description</th>
+      <th>Date de la demande</th>
+      <th>Demandé par</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for request in serviceRequests %}
+      <tr>
+        <td>{{ request.service.name }}</td>
+        <td>{{ request.service.category }}</td>
+        <td>{{ request.service.description|default('—') }}</td>
+        <td>{{ request.createdAt|date('d/m/Y H:i') }}</td>
+        <td>{{ request.user.email }}</td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="5" style="text-align: center; font-style: italic;">Aucune demande de suppression de service.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>📦 Objets</h2>
+<table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+  <thead style="background-color: #f9f9f9;">
+    <tr>
+      <th>Objet</th>
+      <th>Type</th>
+      <th>Statut</th>
+      <th>Dernière utilisation</th>
+      <th>Date de la demande</th>
+      <th>Demandé par</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for request in objetRequests %}
+      <tr>
+        <td>{{ request.objet.name }}</td>
+        <td>{{ request.objet.type }}</td>
+        <td>{{ request.objet.status }}</td>
+        <td>{{ request.objet.lastUsedAt ? request.objet.lastUsedAt|date('d/m/Y H:i') : '—' }}</td>
+        <td>{{ request.createdAt|date('d/m/Y H:i') }}</td>
+        <td>{{ request.user.email }}</td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="6" style="text-align: center; font-style: italic;">Aucune demande de suppression d'objet.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

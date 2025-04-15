@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'objet connecté{% endblock %}
+
+{% block body %}
+<div style="background-color: #1e1e1e; color: #f0f0f0; padding: 2rem; border-radius: 10px; max-width: 700px; margin: auto; box-shadow: 0 0 20px rgba(0,0,0,0.6);">
+  <h2 style="color: #ffa500; text-align:center;">🔍 Détails de l'objet : {{ objet.type|capitalize }}</h2>
+  <hr style="border: 1px solid #333;">
+
+  
+  <p><strong>Nom :</strong> {{ objet.name }}</p>
+  <p><strong>Type :</strong> {{ objet.type|capitalize }}</p>
+  <p><strong>Statut :</strong> {{ objet.status|capitalize }}</p>
+  <p><strong>Emplacement :</strong> {{ objet.location }} / {{ objet.room ?? '—' }}</p>
+
+  <p><strong>Marque :</strong> {{ objet.brand ?? '—' }}</p>
+
+  {% if objet.type in ['thermostat', 'clim'] %}
+    <p><strong>Température actuelle :</strong> {{ objet.currentTemp ?? '—' }}°C</p>
+    <p><strong>Température cible :</strong> {{ objet.targetTemp ?? '—' }}°C</p>
+    <p><strong>Mode :</strong> {{ objet.mode ?? '—' }}</p>
+  {% endif %}
+
+  {% if objet.type == 'camera' %}
+    <p><strong>Angle de vision :</strong> {{ objet.viewAngle ?? '—' }}°</p>
+    <p><strong>Résolution :</strong> {{ objet.resolution ?? '—' }}</p>
+  {% endif %}
+
+  {% if objet.type in ['ordinateur', 'telephone'] %}
+    <p><strong>Capacité de stockage :</strong> {{ objet.storageCapacity ?? '—' }} Go</p>
+    <p><strong>Mémoire vive (RAM) :</strong> {{ objet.ram ?? '—' }} Go</p>
+    <p><strong>Système d'exploitation :</strong> {{ objet.os ?? '—' }}</p>
+    <p><strong>Taille d'écran :</strong> {{ objet.screenSize ?? '—' }}"</p>
+  {% endif %}
+
+  {% if objet.type in ['tv', 'assistant'] %}
+    <p><strong>Taille d'écran :</strong> {{ objet.screenSize ?? '—' }}"</p>
+    <p><strong>Système d'exploitation :</strong> {{ objet.os ?? '—' }}</p>
+  {% endif %}
+
+  {% if objet.type == 'frigo' %}
+    <p><strong>Température actuelle :</strong> {{ objet.currentTemp ?? '—' }}°C</p>
+  {% endif %}
+
+  {% if objet.connectivity is defined or objet.signal is defined or objet.batteryLevel is defined %}
+    <hr style="border: 1px dashed #444;">
+    <p><strong>Connectivité :</strong> {{ objet.connectivity ?? '—' }}</p>
+    <p><strong>Signal :</strong> {{ objet.signal ?? '—' }}</p>
+    <p><strong>État de batterie :</strong> {{ objet.batteryLevel ?? '—' }}%</p>
+  {% endif %}
+
+  <p><strong>Dernière interaction :</strong>
+    {{ objet.lastUsedAt ? objet.lastUsedAt|date('d/m/Y H:i', 'Europe/Paris') : 'Jamais' }}
+  </p>
+
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="{{ path('app_objets_list') }}" class="btn btn-secondary">⬅️ Retour</a>
+    <a href="{{ path('app_objet_historique_modif', {'id': objet.id}) }}" class="btn btn-warning" style="margin-left: 1rem;">📜 Historique</a>
+  </div>
+</div>
+{% endblock %}
+

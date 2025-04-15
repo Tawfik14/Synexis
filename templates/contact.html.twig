@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Contact - Synexis{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/contact_modern.css') }}">
+{% endblock %}
+{% block body %}
+<div class="contact-wrapper">
+  <section class="contact-hero">
+    <div class="contact-header">
+      <img src="{{ asset('img/logovertsansfond.png') }}" alt="Synexis Logo" class="contact-logo-large">
+      <h1>Entrons en contact</h1>
+      <p>Nous sommes là pour vous accompagner dans votre transformation numérique.</p>
+    </div>
+  </section>
+
+  <section class="contact-infos">
+    <div class="card">
+      <h2>Email</h2>
+      <p>support@synexis.fr</p>
+    </div>
+    <div class="card">
+      <h2>Téléphone</h2>
+      <p>+33 1 23 45 67 89</p>
+    </div>
+    <div class="card">
+      <h2>Adresse</h2>
+      <p>42 avenue de l'Innovation, Paris 75000</p>
+    </div>
+  </section>
+
+  {% if app.user %}
+  <section class="contact-form-block">
+    <h2>Formulaire rapide</h2>
+    <div class="form-container">
+      <form method="post" action="/contact/send" class="form-grid">
+        <input type="text" name="name" placeholder="Nom" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+        <input type="hidden" name="role" value="{{ app.user.roles|join(', ') }}">
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+  {% endif %}
+
+  <footer class="footer">
+    &copy; 2025 Synexis — Tous droits réservés
+  </footer>
+</div>
+{% endblock %}

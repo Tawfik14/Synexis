@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des objets{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #2c2c2c;
+    padding-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1b1b1b;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  thead {
+    background-color: #1e1e1e;
+  }
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #2c2c2c;
+  }
+
+  th {
+    font-weight: 600;
+    color: #ccc;
+  }
+
+  tr:hover {
+    background-color: #202020;
+  }
+
+  .no-log {
+    padding: 2rem;
+    text-align: center;
+    color: #888;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>Historique des actions sur les objets</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Objet</th>
+        <th>Action</th>
+        <th>Effectué par</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+      <tr>
+        <td>{{ log.objet ? log.objet.name : 'Objet supprimé' }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.performedBy }}</td>
+        <td>{{ log.createdAt|date('d/m/Y H:i') }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td class="no-log" colspan="4">Aucune action enregistrée pour les objets.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

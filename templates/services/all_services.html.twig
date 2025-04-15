@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les services{% endblock %}
+
+{% block body %}
+<h1>🌐 Tous les services disponibles</h1>
+
+<form method="get" style="margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
+  <input type="text" name="q" placeholder="Rechercher par nom ou catégorie..." value="{{ app.request.get('q') }}" style="padding: 5px; width: 250px;">
+  <select name="category" style="padding: 5px;">
+    <option value="">Toutes les catégories</option>
+    <option value="energie" {% if app.request.get('category') == 'energie' %}selected{% endif %}>Énergie</option>
+    <option value="securite" {% if app.request.get('category') == 'securite' %}selected{% endif %}>Sécurité</option>
+    <option value="confort" {% if app.request.get('category') == 'confort' %}selected{% endif %}>Confort</option>
+    <option value="autre" {% if app.request.get('category') == 'autre' %}selected{% endif %}>Autre</option>
+  </select>
+  <select name="length" style="padding: 5px;">
+    <option value="">Longueur description</option>
+    <option value="50" {% if app.request.get('length') == '50' %}selected{% endif %}>+ 50 caractères</option>
+    <option value="100" {% if app.request.get('length') == '100' %}selected{% endif %}>+ 100 caractères</option>
+  </select>
+  <button type="submit">🔍 Rechercher</button>
+</form>
+
+{% set search = app.request.get('q')|lower %}
+{% set category = app.request.get('category') %}
+{% set length = (app.request.get('length')|default(0)) + 0 %}
+{% set filtered = [] %}
+
+{% for service in services %}
+  {% set match = true %}
+  {% if search %}
+    {% if search not in service.name|lower and search not in service.category|lower %}
+      {% set match = false %}
+    {% endif %}
+  {% endif %}
+  {% if category and service.category != category %}
+    {% set match = false %}
+  {% endif %}
+  {% if length and (service.description is empty or service.description|length < length) %}
+    {% set match = false %}
+  {% endif %}
+  {% if match %}
+    {% set filtered = filtered|merge([service]) %}
+  {% endif %}
+{% endfor %}
+
+{% if filtered is empty %}
+  <p style="font-style: italic;">Aucun service trouvé avec les filtres actuels.</p>
+{% else %}
+  <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th>Nom</th>
+        <th>Catégorie</th>
+        <th>Description</th>
+        <th>Longueur</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for service in filtered %}
+      <tr>
+        <td>{{ service.name }}</td>
+        <td>{{ service.category }}</td>
+        <td>{{ service.description ?? '—' }}</td>
+        <td>{{ service.description ? service.description|length : 0 }} caractères</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if 'ROLE_ADMIN' in app.user.roles %}
+  <a href="{{ path('app_admin_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% elseif 'ROLE_ADVANCED' in app.user.roles %}
+  <a href="{{ path('app_advanced_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% else %}
+  <a href="{{ path('app_user_dashboard') }}" class="btn btn-secondary mt-4">🏠 Retour au tableau de bord</a>
+{% endif %}
+{% endblock %}
+

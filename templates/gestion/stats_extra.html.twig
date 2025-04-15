@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques des Utilisateurs{% endblock %}
+
+{% block body %}
+<h1>📈 Statistiques des Utilisateurs</h1>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+  <div style="flex: 1; min-width: 400px;">
+    <h3>👤 Répartition par Rôle</h3>
+    <canvas id="roleChart"></canvas>
+  </div>
+  <div style="flex: 1; min-width: 400px;">
+    <h3>🏆 Répartition par Niveau</h3>
+    <canvas id="levelChart"></canvas>
+  </div>
+  <div style="flex: 1; min-width: 400px;">
+    <h3>📊 Répartition des Points</h3>
+    <canvas id="pointsChart"></canvas>
+  </div>
+  <div style="flex: 1; min-width: 400px;">
+    <h3>📚 Moyenne de Points par Rôle</h3>
+    <canvas id="avgPointsChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const roleData = {{ roles|json_encode|raw }};
+  const levelData = {{ levels|json_encode|raw }};
+  const pointsData = {{ pointsHistogram|json_encode|raw }};
+  const avgPointsData = {{ avgPointsByRole|json_encode|raw }};
+
+  new Chart(document.getElementById('roleChart'), {
+    type: 'doughnut',
+    data: {
+      labels: roleData.map(e => e.role),
+      datasets: [{ data: roleData.map(e => e.count) }]
+    }
+  });
+
+  new Chart(document.getElementById('levelChart'), {
+    type: 'bar',
+    data: {
+      labels: levelData.map(e => e.level),
+      datasets: [{ label: 'Utilisateurs', data: levelData.map(e => e.count) }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById('pointsChart'), {
+    type: 'line',
+    data: {
+      labels: pointsData.map(e => e.range),
+      datasets: [{ label: 'Utilisateurs', data: pointsData.map(e => e.count) }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById('avgPointsChart'), {
+    type: 'bar',
+    data: {
+      labels: avgPointsData.map(e => e.role),
+      datasets: [{ label: 'Points Moyens', data: avgPointsData.map(e => e.avg) }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+</script>
+{% endblock %}
+
