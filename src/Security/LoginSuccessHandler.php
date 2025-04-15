@@ -25,7 +25,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         $user = $token->getUser();
         $roles = $user->getRoles();
 
-        // ✅ Ajout direct d'1 point à la connexion
+        // Ajout direct d'1 point à la connexion
         $user->setPoints($user->getPoints() + 1);
         $this->em->persist($user);
         $this->em->flush();
