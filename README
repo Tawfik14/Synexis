@@ -1,2 +1,87 @@
-mettre base de donné 
+# 🌐 Synexis – Plateforme de Gestion d'une Entreprise Intelligente
+
+**Synexis** est une plateforme web intelligente, modulaire et responsive, développée avec le framework **Symfony**, destinée à centraliser la gestion des objets connectés, services et utilisateurs dans un environnement professionnel moderne (entreprise intelligente).
+
+---
+
+## 📋 Sommaire
+
+- 🔍 Description du Projet
+- 🧠 Fonctionnalités par Modules
+- 🛠️ Technologies Utilisées
+- ⚙️ Installation du Projet
+- 🗃️ Base de Données
+- 🔐 Accès Utilisateurs
+- 📁 Structure du Projet
+- 🚀 Lancer le Projet
+- 📬 Contact
+
+---
+
+## 🔍 Description du Projet
+
+Le projet **Synexis** s’inscrit dans la thématique des environnements intelligents (Internet des Objets - IoT). Il s’agit d’un outil digital qui permet :  
+- La gestion intelligente des objets connectés d’une entreprise.  
+- L’expérience utilisateur personnalisée selon les droits d’accès.  
+- Le suivi des statistiques d’usage et de consommation énergétique.  
+- La visualisation, configuration, supervision des objets.
+
+Le projet est structuré autour de 4 modules principaux accessibles en fonction du niveau utilisateur :  
+- Visiteur  
+- Utilisateur simple  
+- Utilisateur complexe  
+- Administrateur
+
+---
+
+## 🧠 Fonctionnalités par Modules
+
+### Module Information (Visiteur)
+- Free tour public
+- Accès aux actualités
+- Recherche d'infos avec filtres
+- Inscription à la plateforme
+
+### Module Visualisation (Utilisateur simple)
+- Connexion sécurisée
+- Gestion du profil
+- Consultation des objets connectés
+- Filtrage avancé des objets (type, état, nom...)
+
+### Module Gestion (Utilisateur complexe)
+- Ajout/modification d'objets
+- Configuration des services
+- Statistiques d’usage
+- Surveillance et maintenance
+
+### Module Administration (Administrateur)
+- Création / suppression d’utilisateurs
+- Attribution des droits et niveaux
+- Historique des connexions
+- Rapports globaux
+- Gestion complète de la plateforme
+
+---
+
+## 🛠️ Technologies Utilisées
+
+- Backend : PHP 8.x + Symfony 6
+- Frontend : Twig, HTML5, CSS3, JavaScript
+- Base de Données : MySQL
+- Serveur local : XAMPP / WAMP / MAMP / LAMP
+- Gestion de version : Git + GitHub
+
+---
+
+## ⚙️ Installation du Projet
+
+### Sous Linux
+
+```bash
+sudo apt install php php-cli php-mbstring unzip curl php-xml composer mysql-server
+composer install
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+symfony server:start
+
 
