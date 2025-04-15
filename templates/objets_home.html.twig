@@ -1,0 +1,38 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Objets Connectés - Accueil{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/objets_home.css') }}">
+{% endblock %}
+
+{% block body %}
+<section class="container">
+  <h1>📦 Espace de Gestion</h1>
+  <p class="subtitle">Gérez ou explorez les objets connectés et services de votre environnement.</p>
+
+  <div class="card-container">
+    <a href="{{ path('app_objets_list') }}" class="card-link">
+      <div class="card">
+        <h2>📋 Liste des objets</h2>
+        <p>Consulter, modifier ou ajouter des objets connectés.</p>
+      </div>
+    </a>
+
+    <a href="{{ path('app_objets_stats') }}" class="card-link">
+      <div class="card">
+        <h2>📊 Statistiques</h2>
+        <p>Visualiser les données par type ou statut d'objet.</p>
+      </div>
+    </a>
+
+    <a href="{{ path('app_services') }}" class="card-link">
+      <div class="card">
+        <h2>🛠️ Liste des services</h2>
+        <p>Modifier, ajouter ou supprimer des services disponibles.</p>
+      </div>
+    </a>
+  </div>
+</section>
+{% endblock %}
