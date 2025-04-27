@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Synexis{% endblock %}</title>
 
-    <!-- Global styles -->
+    
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages_final.css') }}">
 
-    <!-- Styles si utilisateur connecté -->
+    
     {% if app.user %}
         <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     {% endif %}
