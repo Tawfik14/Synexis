@@ -130,6 +130,21 @@ php -S 127.0.0.1:8000 -t public
 ### Lancer :
 ouvrez http://localhost:8000 
 
+    #### Important :
+
+Après avoir lancé le site, il faudra vous inscrire.
+Lors de l'inscription, il vous sera demandé un code d'accès.
+
+Voici les codes d'accès disponibles :
+
+    SYN-ADM-01 pour devenir Administrateur 
+
+    SYN-ADV-02 pour devenir Utilisateur avancé 
+
+    SYN-USER-03 pour devenir Utilisateur standard 
+
+Utilisez le code correspondant au rôle que vous souhaitez obtenir.
+
 
 ## Contact
 
