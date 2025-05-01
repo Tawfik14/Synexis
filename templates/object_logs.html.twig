@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des objets{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/object_logs.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>Historique des actions sur les objets</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Objet</th>
+        <th>Action</th>
+        <th>Effectué par</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+      <tr>
+        <td>{{ log.objet ? log.objet.name : 'Objet supprimé' }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.performedBy }}</td>
+        <td>{{ log.createdAt|date('d/m/Y H:i') }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td class="no-log" colspan="4">Aucune action enregistrée pour les objets.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

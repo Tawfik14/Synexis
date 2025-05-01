@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/admin-pannel-dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="topbar">Panneau d'administration</div>
+
+<section class="dashboard-container">
+  <div class="card">
+    <h2>Messages</h2>
+    <p>Accédez aux messages envoyés par les utilisateurs via le formulaire de contact.</p>
+    <a href="{{ path('admin_messages') }}">Ouvrir</a>
+  </div>
+  <div class="card">
+    <h2>Historique</h2>
+    <p>Visualisez toutes les connexions et actions enregistrées dans l'application.</p>
+    <a href="{{ path('admin_logs') }}">Consulter</a>
+  </div>
+  <div class="card">
+    <h2>Statistiques</h2>
+    <p>Accédez à des statistiques générales sur les objets connectés.</p>
+    <a href="{{ path('stats_extra') }}">Explorer</a>
+  </div>
+  <div class="card">
+    <h2>Utilisateurs</h2>
+    <p>Gérez les comptes utilisateurs, leurs rôles, niveaux et autres données.</p>
+    <a href="{{ path('admin_users') }}">Gérer</a>
+  </div>
+  <div class="card">
+  <h2>Demandes de suppression</h2>
+  <p>Consultez les demandes de suppression d’objets et de services faites par les utilisateurs.</p>
+  <a href="{{ path('app_admin_delete_requests') }}">Voir les demandes</a>
+</div>
+
+</section>
+
+<footer>
+  &copy; {{ "now"|date("Y") }} Synexis — Interface d'administration
+</footer>
+{% endblock %}

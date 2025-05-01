@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des actions{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/logs.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>📜 Historique des actions</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Utilisateur</th>
+        <th>Action</th>
+        <th>Objet/Autre</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if logs is not empty %}
+        {% for log in logs %}
+        <tr>
+          <td>{{ log.userEmail }}</td>
+          <td>{{ log.action }}</td>
+          <td>{{ log.objectName }}</td>
+          <td>{{ log.createdAt|date('d/m/Y H:i') }}</td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td class="no-log" colspan="4">Aucune activité enregistrée.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
