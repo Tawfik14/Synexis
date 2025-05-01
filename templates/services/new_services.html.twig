@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un service{% endblock %}
+
+{% block body %}
+<h1>➕ Ajouter un nouveau service</h1>
+
+{{ form_start(form) }}
+  <div style="max-width: 600px;">
+    {{ form_label(form.name) }}
+{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.description) }}
+  </div>
+  <button class="btn btn-success mt-3">💾 Enregistrer</button>
+  <a href="{{ path('app_services') }}" class="btn btn-secondary mt-3">↩️ Retour</a>
+
+{# Message d'erreur global sous le formulaire #}
+{% if form_errors(form.name) %}
+    <div style="color:red;margin-top:10px;">
+        {{ form_errors(form.name) }}
+    </div>
+{% endif %}
+
+{{ form_end(form) }}
+{% endblock %}
