@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un objet connecté{% endblock %}
+
+{% block body %}
+<h1>Ajouter un nouvel objet</h1>
+
+{{ form_start(form, {'attr': {'id': 'connected-object-form'}}) }}
+
+<div data-field="name">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div data-field="type">{{ form_row(form.type) }}</div>
+<div data-field="status">{{ form_row(form.status) }}</div>
+<div data-field="location">{{ form_row(form.location) }}</div>
+<div data-field="room">{{ form_row(form.room) }}</div>
+<div data-field="brand">{{ form_row(form.brand) }}</div>
+<div data-field="description">{{ form_row(form.description) }}</div>
+
+<div data-field="currentTemp">{{ form_row(form.currentTemp) }}</div>
+<div data-field="targetTemp">{{ form_row(form.targetTemp) }}</div>
+<div data-field="mode">{{ form_row(form.mode) }}</div>
+
+<div data-field="viewAngle">{{ form_row(form.viewAngle) }}</div>
+<div data-field="resolution">{{ form_row(form.resolution) }}</div>
+
+<div data-field="connectivity">{{ form_row(form.connectivity) }}</div>
+<div data-field="signal">{{ form_row(form.signal) }}</div>
+<div data-field="batteryLevel">{{ form_row(form.batteryLevel) }}</div>
+
+<div data-field="storageCapacity">{{ form_row(form.storageCapacity) }}</div>
+<div data-field="ram">{{ form_row(form.ram) }}</div>
+<div data-field="screenSize">{{ form_row(form.screenSize) }}</div>
+<div data-field="os">{{ form_row(form.os) }}</div>
+
+<button class="btn btn-success">Enregistrer</button>
+
+{# Message d'erreur global sous le formulaire #}
+{% if form_errors(form.name) %}
+    <div style="color:red;margin-top:10px;">
+        {{ form_errors(form.name) }}
+    </div>
+{% endif %}
+
+{{ form_end(form) }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const typeSelect = document.querySelector('#connected_object_type');
+    const allFields = document.querySelectorAll('[data-field]');
+
+    const typeFields = {
+        camera: ['viewAngle', 'resolution'],
+        thermostat: ['currentTemp', 'targetTemp', 'mode'],
+        clim: ['currentTemp', 'targetTemp', 'mode'],
+        ordinateur: ['storageCapacity', 'ram', 'screenSize', 'os'],
+        telephone: ['storageCapacity', 'ram', 'screenSize', 'os', 'batteryLevel'],
+        frigo: ['currentTemp'],
+        imprimante: [],
+        badgeuse: ['batteryLevel'],
+        tv: ['screenSize', 'os'],
+        assistant: ['screenSize', 'os'],
+        box: [],
+        routeur: [],
+        serrure: [],
+        cafetiere: []
+    };
+
+    function toggleFieldsForType(type) {
+        allFields.forEach(field => {
+            if (['name', 'type', 'status', 'location', 'room', 'brand', 'description'].includes(field.dataset.field)) {
+                field.style.display = 'block';
+            } else {
+                field.style.display = 'none';
+            }
+        });
+
+        const fieldsToShow = typeFields[type] || [];
+        fieldsToShow.forEach(fieldName => {
+            const field = document.querySelector('[data-field="' + fieldName + '"]');
+            if (field) field.style.display = 'block';
+        });
+    }
+
+    if (typeSelect) {
+        toggleFieldsForType(typeSelect.value); // initial load
+
+        typeSelect.addEventListener('change', function () {
+            toggleFieldsForType(this.value);
+        });
+    }
+});
+</script>
+<script src="{{ asset('public/js/form-dynamic-fields.js') }}"></script>
+{% endblock %}
+
